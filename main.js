@@ -37,10 +37,10 @@ const header = document.querySelector("header");
 window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
         header.classList.add("scrolled");
-        
+
     } else {
         header.classList.remove("scrolled");
-        
+
     }
 });
 
@@ -62,7 +62,7 @@ const menu = document.querySelector(".menu-toggle");
 const nav = document.querySelector("nav");
 
 menu.addEventListener("click", () => {
-    nav.classList.toggle("active");   
+    nav.classList.toggle("active");
 });
 
 
@@ -119,7 +119,7 @@ checkoutForm.addEventListener("submit", function (e) {
         return;
     }
 
-   
+
 
     const paymentMethod = paymentSelect.value;
 
@@ -131,11 +131,11 @@ checkoutForm.addEventListener("submit", function (e) {
 
     const phone = phoneInput.value.trim();
 
-    
+
     if (!/^\d{11}$/.test(phone)) {
         phoneError.innerText = "Please enter exactly 11 digits.";
         phoneError.style.display = "block";
-        return; 
+        return;
     } else {
         phoneError.innerText = "";
         phoneError.style.display = "none";
@@ -209,34 +209,35 @@ ${productsText}
 
             const yourNumber = "201023085140";
 
-            const whatsappURL = `https://wa.me/${yourNumber}?text=${encodeURIComponent(message)}`;
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${yourNumber}&text=${encodeURIComponent(message)}`;
 
 
 
-            
+
             checkoutForm.reset();
 
-            
+
             cart = [];
             cartCount.innerText = 0;
             updateCart();
 
-            
+
             checkoutPanel.classList.remove("open");
             cartPanel.classList.remove("open");
             document.body.classList.remove("no-scroll");
 
 
-            
+
             popupSize.value = "";
-            popupQuantity.value = "";
+            quantity = 1;
+            quantityDisplay.innerText = 1;
             popupColors.innerHTML = "";
 
             document.querySelectorAll(".color-option")
                 .forEach(el => el.classList.remove("active"));
 
 
-            
+
             currentModel = null;
             currentPrice = 0;
 
@@ -288,13 +289,13 @@ cartIcon.addEventListener("click", function () {
 document.addEventListener("click", function (e) {
 
     // قفل السلة
-   // حط ده مكانه
-if (cartPanel.classList.contains("open")) {
-    
-    if (!cartPanel.contains(e.target) && !cartIcon.contains(e.target) && e.target !== buyNowPopup) {
-        cartPanel.classList.remove("open");
+    // حط ده مكانه
+    if (cartPanel.classList.contains("open")) {
+
+        if (!cartPanel.contains(e.target) && !cartIcon.contains(e.target) && e.target !== buyNowPopup) {
+            cartPanel.classList.remove("open");
+        }
     }
-}
 
     // قفل الـ Checkout
     if (checkoutPanel.classList.contains("open")) {
@@ -316,7 +317,7 @@ checkoutBtn.addEventListener("click", function () {
 
 
     checkoutPanel.classList.add("open");
-    cartPanel.classList.remove("open"); 
+    cartPanel.classList.remove("open");
     document.body.classList.add("no-scroll");
 });
 
@@ -330,14 +331,14 @@ function showOrderSuccess(message) {
 
     setTimeout(() => {
         orderToast.classList.add("show");
-    }, 100); 
+    }, 100);
 
     setTimeout(() => {
         orderToast.classList.remove("show");
         setTimeout(() => {
             document.body.removeChild(orderToast);
         }, 500);
-    }, 2000); 
+    }, 2000);
 }
 
 
@@ -367,7 +368,27 @@ document.getElementById("closeModelPopup").onclick = () => {
 
 
 const popupSize = document.getElementById("popupSize");
-const popupQuantity = document.getElementById("popupQuantity");
+
+
+let quantity = 1;
+
+const quantityDisplay = document.getElementById("popupQuantity");
+const plusBtn = document.getElementById("plusBtn");
+const minusBtn = document.getElementById("minusBtn");
+
+plusBtn.addEventListener("click", () => {
+    quantity++;
+    quantityDisplay.innerText = quantity;
+});
+
+minusBtn.addEventListener("click", () => {
+    if (quantity > 1) {
+        quantity--;
+        quantityDisplay.innerText = quantity;
+    }
+});
+
+
 const addToCartPopup = document.getElementById("addToCartPopup");
 const buyNowPopup = document.getElementById("buyNowPopup");
 const closeModelPopup = document.getElementById("closeModelPopup");
@@ -379,12 +400,15 @@ const closeModelPopup = document.getElementById("closeModelPopup");
 
 closeModelPopup.addEventListener("click", () => {
     popup.classList.remove("active");
+
+    quantity = 1;
+    quantityDisplay.innerText = 1;
 });
 
 
 addToCartPopup.addEventListener("click", () => {
     const size = popupSize.value;
-    const quantity = popupQuantity.value;
+    const quantityValue = quantity;
 
     const selectedColorEl = popupColors.querySelector(".color-option.active");
     const selectedColor = selectedColorEl ? selectedColorEl.title : null;
@@ -411,15 +435,15 @@ addToCartPopup.addEventListener("click", () => {
         name: popupName.innerText,
         color: selectedColor,
         size: size,
-        quantity: parseInt(quantity),
+        quantity: parseInt(quantityValue),
         price: currentPrice
     });
 
     // تحديث عدد السلة
     cartCount.innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
-    updateCart(); 
+    updateCart();
 
-   
+
     showToast(`${popupName.innerText} (${selectedColor}, ${size}) Added To Cart ✅`);
 });
 
@@ -428,14 +452,14 @@ buyNowPopup.addEventListener("click", (e) => {
     e.stopPropagation(); // السطر ده هو السر اللي هيخليها تفتح ومتقفلش
 
     if (cart.length === 0) {
-        
+
         alert("Please add at least one item to your cart first!");
-         return; 
+        return;
     }
     popup.classList.remove("active");
     checkoutPanel.classList.remove("open");
     cartPanel.classList.add("open");
-   
+
 });
 
 function updateCart() {
@@ -457,10 +481,10 @@ function updateCart() {
         cartItems.appendChild(div);
     });
 
-      const shipping = 95;
+    const shipping = 95;
     const total = subtotal + shipping;
 
-    
+
     document.getElementById("checkoutTotal").innerText = "Total: " + total + " EGP";
 
 
@@ -594,7 +618,7 @@ categoryCards.forEach(card => {
                 <h4>${model.name}</h4>
             `;
 
-            
+
             div.addEventListener("click", (e) => {
                 e.stopPropagation();
 
@@ -605,9 +629,9 @@ categoryCards.forEach(card => {
                 popupImage.src = model.img;
                 popupName.innerText = model.name;
 
-                
+
                 popupOldPrice.innerText = model.oldPrice + " EGP";
-                popupNewPrice.innerText = model.newPrice+ " EGP";
+                popupNewPrice.innerText = model.newPrice + " EGP";
                 currentPrice = model.newPrice;
 
                 popupColors.innerHTML = "";
