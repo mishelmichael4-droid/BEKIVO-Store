@@ -209,7 +209,7 @@ ${productsText}
 
             const yourNumber = "201023085140";
 
-            const whatsappURL = `https://api.whatsapp.com/send?phone=${yourNumber}&text=${encodeURIComponent(message)}`;
+            
 
 
 
@@ -244,9 +244,14 @@ ${productsText}
 
             showOrderSuccess("Order sent successfully! ✅");
 
+            const whatsappApp = `whatsapp://send?phone=${yourNumber}&text=${encodeURIComponent(message)}`;
+            const whatsappWeb = `https://api.whatsapp.com/send?phone=${yourNumber}&text=${encodeURIComponent(message)}`;
+
+            window.location.href = whatsappApp;
+
             setTimeout(() => {
-                window.open(whatsappURL, "_blank");
-            }, 800);
+                window.location.href = whatsappWeb;
+            }, 1000);
 
 
             checkoutPanel.classList.remove("open");
