@@ -3,7 +3,28 @@
     padding: 0;
     box-sizing: border-box;
 
+    transition: all 0.25s ease;
     font-family: 'Inter', sans-serif;
+}
+
+section {
+    margin-bottom: 60px;
+    border: 1px solid #f1f5f9;
+}
+
+
+
+
+:root {
+    --main-color: #111827;
+    /* أسود شيك */
+    --accent: #c19a6b;
+    /* ذهبي هادي */
+    --soft-bg: #f8fafc;
+    /* خلفية */
+    --card-bg: #ffffff;
+    /* كروت */
+    --border: #e5e7eb;
 }
 
 html {
@@ -11,8 +32,9 @@ html {
 }
 
 body {
-    background: #0f172a;
-    color: #e5e7eb;
+    background: #f8fafc;
+    color: #1e293b;
+    -webkit-tap-highlight-color: transparent;
     
 
 }
@@ -55,7 +77,8 @@ header {
     width: 100%;
     /* background: transparent; */
     /* backdrop-filter: blur(10px); */
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(18, 29, 59, 0.9);
+    backdrop-filter: blur(10px);
 
     z-index: 1000;
 
@@ -88,7 +111,7 @@ header {
     letter-spacing: -8px;
     font-family: 'Times New Roman', serif;
     position: relative;
-    color: #ffffff;
+    color: #edf3ff; 
     display: inline-block;
     line-height: 0.75;
     margin-bottom: -8px;
@@ -205,7 +228,7 @@ nav a:hover {
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(15, 23, 42, 0.98);
+        background: white;
         flex-direction: column;
         padding: 20px 0;
         gap: 18px;
@@ -213,7 +236,7 @@ nav a:hover {
     }
 
     nav.main-nav a {
-        color: white !important;
+        color: #1e293b !important;
         text-align: center;
         padding: 14px 0;
         font-size: 18px;
@@ -246,6 +269,9 @@ nav a:hover {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+    .menu-toggle {
+        color: white;
     }
 
     /* .logo-text {
@@ -337,8 +363,8 @@ header.scrolled nav a {
 @media (max-width: 768px) {
 
     .cart-panel {
-        width: 280px !important;
-        right: -280px !important;
+        width: 80% !important;
+        right: -80% !important;
     }
 
     .cart-panel.open {
@@ -346,12 +372,16 @@ header.scrolled nav a {
     }
 
     .checkout-panel {
-        width: 300px !important;
-        right: -300px !important;
+        width: 80% !important;
+        right: -80% !important;
     }
 
     .checkout-panel.open {
         right: 0 !important;
+    }
+
+    .popup-content {
+        width: 90%;
     }
 
 }
@@ -401,14 +431,22 @@ header.scrolled nav a {
 }
 
 .products {
-    padding: 120px 8%;
+    padding: 80px 5%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     text-align: center;
-    background: #111827;
+    background: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    color: #1e293b;
 }
 
 .products h2{
     padding: 30px;
     font: 2em sans-serif;
+}
+.product h3{
+    color: #000000;
+    padding-top: 15px
 }
 
 .product-grid {
@@ -420,10 +458,11 @@ header.scrolled nav a {
 .product {
     cursor: pointer;
     padding: 18px;
-    background: #1f2937;
+    background: #ffffff;
     border-radius: 12px;
     transition: all 0.35s;
-    border: 1px solid #374151;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     color: #e5e7eb;
 }
 
@@ -433,12 +472,19 @@ header.scrolled nav a {
 }
 
 .image {
+    width: 100%;
+    /* height: 630px; */
     position: relative;
+    /* aspect-ratio: 1 / 1; */
     overflow: hidden;
+    
 }
 
 .image img {
     width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
     display: block;
     transition: transform .5s ease;
     border-radius: 8px;
@@ -563,9 +609,12 @@ header.scrolled nav a {
 
 /* ABOUT */
 .about {
-    padding: 120px 8%;
-    background: #111827;
-    color: #e5e7eb;
+    padding: 80px 5%;
+    background: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    color: #1e293b;
     /* text-align: center;
     line-height: 1.7; */
 }
@@ -588,7 +637,7 @@ header.scrolled nav a {
 .about-text p {
     font-size: 18px;
     line-height: 1.8;
-    color: #d1d5db;
+    color: #334155;
     /* نص فاتح مناسب */
 }
 
@@ -602,10 +651,13 @@ header.scrolled nav a {
 /* CONTACT */
 
 .contact {
-    padding: 120px 8%;
+    padding: 80px 5%;
     text-align: center;
-    background: #020617;
-    color: #1A1A1A;
+    background: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    color: white;
     border-top: 1px solid #1f2937;
     width: 100%;
     /* max-width:100%; */
@@ -615,7 +667,7 @@ header.scrolled nav a {
     font-size: 34px;
     margin-bottom: 40px;
     letter-spacing: 1px;
-    color: #d1d5db;
+    color: #0f172a;
 }
 
 .social {
@@ -626,9 +678,10 @@ header.scrolled nav a {
 }
 
 .social a {
-    color: #666;
+    color: #484849;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 500;
     transition: 0.3s;
     padding: 6px 12px;
     border-radius: 8px;
@@ -641,11 +694,12 @@ header.scrolled nav a {
 }
 
 footer {
-    background: #020617;
-    color: #9ca3af;
+    background: #ffffff;
+    color: #000000;
     text-align: center;
     padding: 30px;
-    border-top: 1px solid #1f2937;
+    border-top: 1px solid #e5e7eb;
+    font-size: 17px;
     transition: 0.3s;
 }
 
@@ -693,7 +747,7 @@ footer:hover {
 
     height: 100vh;
 
-    background: #0f172a;
+    background: #f9fafb;
 
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
 
@@ -723,7 +777,8 @@ justify-content:space-between;
 align-items:center;
 margin-bottom:12px;
 padding:10px;
-background:#1f2937;
+background: #f9fafb;
+color: #1e293b;
 border-radius:6px;
 }
 
@@ -735,7 +790,8 @@ border-radius:6px;
 
     padding: 12px;
 
-    background: black;
+    background: #111827;
+    border-radius: 10px;
 
     color: white;
 
@@ -770,7 +826,7 @@ border-radius:6px;
     top: 0;
     width: 340px;
     height: 100%;
-    background: #0f172a;
+    background: #f9fafb;
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
     transition: 0.4s;
@@ -799,8 +855,8 @@ border-radius:6px;
     margin-top: 6px;
     border: 1px solid #374151;
     border-radius: 6px;
-    background: #0f172a;
-    color: white;
+    background:  white;
+    color: #0f172a;
     outline: none;
     font-size: 15px;
 }
@@ -1010,10 +1066,13 @@ border-radius:6px;
 
 
 .featured-categories {
-    padding: 100px 8%;
+    padding: 80px 5%;
     text-align: center;
-    background: #0f172a;
-    color: #e5e7eb;
+    background: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    color: #1e293b;
 }
 
 .featured-categories h2 {
@@ -1033,7 +1092,9 @@ border-radius:6px;
 }
 
 .category-card {
-    background: #1f2937;
+    background: white;
+    border: 1px solid #e5e7eb;
+    color: #1e293b;
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -1058,14 +1119,14 @@ border-radius:6px;
 .category-card h3 {
     margin-top: 15px;
     font-size: 1.5em;
-    color: #fff;
+    color: #1e293b;
 }
 
 /* القسم الذي يظهر بعد اختيار فئة */
 .models-section {
     padding: 80px 8%;
-    background: #111827;
-    color: #e5e7eb;
+    background: #f8fafc;
+    color:#1e293b;
     display: block; /* سيظهر عند التفاعل */
 }
 .hidden {
@@ -1100,7 +1161,9 @@ border-radius:6px;
 }
 
 .model-card {
-    background: #1f2937;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    color: #1e293b;
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -1144,7 +1207,7 @@ border-radius:6px;
 .model-card h4 {
     margin-top: 12px;
     font-size: 1.2em;
-    color: #fff;
+    color: #1e293b;
 }
 
 .popup {
@@ -1162,10 +1225,12 @@ border-radius:6px;
 }
 
 .popup-content {
-    background: #1f2937;
+    background: #f9fafb;
+    color: #111;
     padding: 25px;
     border-radius: 16px;
-    width: 300px;
+    width: 90%;
+    max-width: 350px;
     text-align: center;
     box-shadow: 0 10px 40px rgba(0,0,0,0.6);
     position: relative;
@@ -1184,7 +1249,7 @@ border-radius:6px;
 .popup-content h4 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #fff;
+    color: #1e293b;
 }
 
 .popup-colors {
@@ -1264,9 +1329,9 @@ border-radius:6px;
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #374151;
-    background: #0f172a;
-    color: white;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    color: #111;
     outline: none;
     font-size: 14px;
 }

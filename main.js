@@ -523,7 +523,7 @@ const data = {
             name: "BEKIVO TAILORED PANTS",
             img: "imag/pants7.jpeg",
             oldPrice: 1200,
-            newPrice: 900,
+            newPrice: 849,
             colors: [
                 { name: "black", img: "imag/pants4.jpeg" },
                 { name: "beige", img: "imag/pants5.jpeg" },
@@ -558,7 +558,7 @@ const data = {
             name: "BEKIVO CHUNKY DERBY",
             img: "imag/shoes4.jpeg",
             oldPrice: 1300,
-            newPrice: 900,
+            newPrice: 899,
             colors: [
                 { name: "black", img: "imag/shoes4.jpeg" },
                 // { name: "brown", img: "imag/shoes1.jpeg" },
