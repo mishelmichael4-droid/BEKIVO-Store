@@ -589,7 +589,39 @@ const data = {
         //         { name: "white", img: "imag/shoes_chunky_white.jpeg" }
         //     ]
         // }
-    ]
+    ],
+
+    TankTop:[
+        {
+
+            name: "BEKIVO Basic White Tank Top",
+            img: "imag/Basic White.jpeg",
+            oldPrice: 500,
+            newPrice: 299,
+            colors: [
+                { name: "White", img: "imag/Basic White 2.jpeg" },
+                // { name: "brown", img: "imag/shoes1.jpeg" },
+                // { name: "white", img: "imag/78418c1e.jpg" }
+            ]
+
+        }
+    ],
+
+    TankBlack:[
+        {
+
+            name: "BEKIVO Basic Black Tank Top",
+            img: "imag/Basic black 3.jpeg",
+            oldPrice: 500,
+            newPrice: 299,
+            colors: [
+                { name: "black", img: "imag/Basic black.jpeg" },
+                // { name: "brown", img: "imag/shoes1.jpeg" },
+                // { name: "white", img: "imag/78418c1e.jpg" }
+            ]
+
+        }
+    ],
 }
 
 categoryCards.forEach(card => {
@@ -602,8 +634,17 @@ categoryCards.forEach(card => {
 
         modelsTitle.innerText =
             category === "pants"
-                ? "Choose Your Pants Model 👖"
-                : "Choose Your Shoes Model 👟";
+            ? "Choose Your Pants Model 👖"
+            : category === "shoes"
+            ? "Choose Your Shoes Model 👟"
+            : category === "TankTop"
+            ? "Choose Your White Tank Top 🤍"
+            : category === "TankBlack"
+            ? "Choose Your Black Tank Top 🖤"
+            : "Choose Your Model";
+
+               
+               
 
         modelsSection.classList.remove("hidden");
 
@@ -646,6 +687,10 @@ categoryCards.forEach(card => {
                     sizes = ["M", "L", "XL", "XXL"];
                 } else if (category === "shoes") {
                     sizes = ["41", "42", "43", "44", "45"];
+                }else if (category === "TankTop") {
+                    sizes = ["S", "M", "L", "XL"];
+                }else if (category === "TankBlack") {
+                    sizes = ["S", "M", "L", "XL"];
                 }
 
                 popupSize.innerHTML = "";
