@@ -1241,7 +1241,7 @@ border-radius:6px;
 .popup-content img {
     width: 100%;
     max-height: 250px;      /* تصغير الصورة */
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
     margin-bottom: 15px;
 }
