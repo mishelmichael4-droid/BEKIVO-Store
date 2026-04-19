@@ -1499,3 +1499,37 @@ border-radius:6px;
     color: #22c55e;
     
 }
+
+
+
+
+.image-box {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.image-box img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.img-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#prevImg {
+    left: 10px;
+}
+
+#nextImg {
+    right: 10px;
+}

@@ -209,7 +209,7 @@ ${productsText}
 
             const yourNumber = "201023085140";
 
-            
+
 
 
 
@@ -418,7 +418,7 @@ addToCartPopup.addEventListener("click", () => {
     const selectedColorEl = popupColors.querySelector(".color-option.active");
     const selectedColor = selectedColorEl ? selectedColorEl.title : null;
 
-    if (!selectedColor) {
+    if (!isNoColorProduct && !selectedColor) {
         alert("Please select a color");
         return;
     }
@@ -516,6 +516,14 @@ const popupColors = document.querySelector(".popup-colors");
 let currentModel = null;
 let currentPrice = 0;
 
+
+let isNoColorProduct = false;
+let currentImages = [];
+let currentImageIndex = 0;
+
+const prevImg = document.getElementById("prevImg");
+const nextImg = document.getElementById("nextImg");
+
 // البيانات
 const data = {
     pants: [
@@ -591,34 +599,29 @@ const data = {
         // }
     ],
 
-    TankTop:[
+    TankTop: [
         {
-
-            name: "BEKIVO Basic White Tank Top",
-            img: "imag/Basic White.jpeg",
+            name: "BEKIVO Basic White Take Top",
+            img: "imag/Basic White 2.jpeg",
+            images: ["imag/Basic White 2.jpeg", "imag/Basic White.jpeg","imag/Basic Size.jpeg"],
             oldPrice: 500,
             newPrice: 299,
-            colors: [
-                { name: "White", img: "imag/Basic White 2.jpeg" },
-                // { name: "brown", img: "imag/shoes1.jpeg" },
-                // { name: "white", img: "imag/78418c1e.jpg" }
-            ]
+            noColor: true
 
         }
     ],
 
-    TankBlack:[
+    TankBlack: [
         {
 
-            name: "BEKIVO Basic Black Tank Top",
-            img: "imag/Basic black 3.jpeg",
+
+            name: "BEKIVO Basic Black Take Top",
+            img: "imag/Basic black.jpeg",
+            images: ["imag/Basic black.jpeg", "imag/Basic black 2.jpeg", "imag/Basic black 3.jpeg", "imag/Basic Size.jpeg"],
             oldPrice: 500,
             newPrice: 299,
-            colors: [
-                { name: "black", img: "imag/Basic black.jpeg" },
-                // { name: "brown", img: "imag/shoes1.jpeg" },
-                // { name: "white", img: "imag/78418c1e.jpg" }
-            ]
+            noColor: true
+
 
         }
     ],
@@ -634,17 +637,17 @@ categoryCards.forEach(card => {
 
         modelsTitle.innerText =
             category === "pants"
-            ? "Choose Your Pants Model 👖"
-            : category === "shoes"
-            ? "Choose Your Shoes Model 👟"
-            : category === "TankTop"
-            ? "Choose Your White Tank Top 🤍"
-            : category === "TankBlack"
-            ? "Choose Your Black Tank Top 🖤"
-            : "Choose Your Model";
+                ? "Choose Your Pants Model 👖"
+                : category === "shoes"
+                    ? "Choose Your Shoes Model 👟"
+                    : category === "TankTop"
+                        ? "Choose Your White Tank Top 🤍"
+                        : category === "TankBlack"
+                            ? "Choose Your Black Tank Top 🖤"
+                            : "Choose Your Model";
 
-               
-               
+
+
 
         modelsSection.classList.remove("hidden");
 
@@ -671,6 +674,31 @@ categoryCards.forEach(card => {
 
                 currentModel = model.name;
 
+
+                
+
+
+                isNoColorProduct = model.noColor === true;
+
+                // الصور
+                currentImages = model.images || [model.img];
+                currentImageIndex = 0;
+                popupImage.src = currentImages[0];
+
+                // التحكم في السهمين
+                if (isNoColorProduct) {
+                    prevImg.style.display = "block";
+                    nextImg.style.display = "block";
+                    popupColors.style.display = "none";
+                } else {
+                    prevImg.style.display = "none";
+                    nextImg.style.display = "none";
+                    popupColors.style.display = "flex";
+                }
+
+
+
+
                 popup.classList.add("active");
                 popupImage.src = model.img;
                 popupName.innerText = model.name;
@@ -687,9 +715,9 @@ categoryCards.forEach(card => {
                     sizes = ["M", "L", "XL", "XXL"];
                 } else if (category === "shoes") {
                     sizes = ["41", "42", "43", "44", "45"];
-                }else if (category === "TankTop") {
+                } else if (category === "TankTop") {
                     sizes = ["S", "M", "L", "XL"];
-                }else if (category === "TankBlack") {
+                } else if (category === "TankBlack") {
                     sizes = ["S", "M", "L", "XL"];
                 }
 
@@ -739,4 +767,27 @@ document.addEventListener("click", function (e) {
         popup.classList.remove("active");
     }
 
+});
+
+
+
+
+prevImg.addEventListener("click", () => {
+
+    if (!isNoColorProduct) return;
+
+    currentImageIndex =
+        (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+
+    popupImage.src = currentImages[currentImageIndex];
+});
+
+nextImg.addEventListener("click", () => {
+
+    if (!isNoColorProduct) return;
+
+    currentImageIndex =
+        (currentImageIndex + 1) % currentImages.length;
+
+    popupImage.src = currentImages[currentImageIndex];
 });
