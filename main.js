@@ -90,7 +90,7 @@ const checkoutPanel = document.getElementById("checkoutPanel");
 
 
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzcGURakjUWKM9SR7050dWFKaFxhsykpIKQGqO48T9XWhxcU33ShyQGjS1qVlUbBf-z/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz0uqa8NY2VnQ-hW077sV2HFLsVGGz2f9SbiTrdtHOd_mS0_vwAtNKAqY3-JLYSiJrLLw/exec";
 const checkoutForm = document.getElementById("checkoutForm");
 
 
